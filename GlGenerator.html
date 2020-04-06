@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+   </script>
+   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+   <title>GL Code Generator</title>
+</head>
+
+<body ng-app="">
+   <div>
+
+      <style>
+         .form-control {
+            width: 400px;
+         }
+
+
+      </style>
+
+      <div class="GLSelections">
+         <h5>You must make your selections in each drop down below in order to bill to the appropriate Swift GL Code</h5>
+
+
+         <div>
+            Select Business
+            </br>
+            <select class="form-control" name="glCompany" ng-model="glCompanySelect">
+               <option value="">Select Business</option>
+               <option value=100>Corporate</option>
+               <option value=002>General Operations</option>
+               <option value=105>Intermodal</option>
+               <option value=007>Logistics</option>
+               <option value=003>Shop</option>
+            </select>
+         </div>
+
+         <div>
+            Select Division
+            </br>
+            <select class="form-control" name="glDivision" id="glDivisionSelect" ng-model="glDivisionSelect">
+               <option value="">Select Division</option>
+               <option value="020">Corporate</option>
+               <option value="101">Phoenix</option>
+               <option value="103">Salt Lake</option>
+               <option value="104">Troutdale</option>
+               <option value="105">Intermodal</option>
+               <option value="106">Reno</option>
+               <option value="107">Lathrop</option>
+               <option value="108">Oklahoma City</option>
+               <option value="109">Fontana</option>
+               <option value="110">Wilmington</option>
+               <option value="111">Lewiston</option>
+               <option value="112">Denver</option>
+               <option value="113">Seattle</option>
+               <option value="114">Gary</option>
+               <option value="115">Swift Logistics</option>
+               <option value="116">Edwardsville</option>
+               <option value="117">Lancaster</option>
+               <option value="118">Laredo</option>
+               <option value="119">Mexico Operations</option>
+               <option value="120">Willows</option>
+               <option value="121">El Paso</option>
+               <option value="122">Corsicana</option>
+               <option value="124">Albuquerque</option>
+               <option value="125">Houston</option>
+               <option value="130">Swift Refrigerated - West Valley City</option>
+               <option value="131">Swift Refrigerated - Fontana</option>
+               <option value="199">Otay Mesa</option>
+               <option value="301">Phoenix</option>
+               <option value="330">Harrisburg</option>
+               <option value="332">Albany</option>
+               <option value="333">Wilton</option>
+               <option value="334">Richmond</option>
+               <option value="335">Syracuse</option>
+               <option value="336">Greer</option>
+               <option value="337">Columbus</option>
+               <option value="338">Ocala</option>
+               <option value="339">Gary</option>
+               <option value="340">Atlanta</option>
+               <option value="341">Memphis</option>
+               <option value="344">Menasha</option>
+               <option value="345">Detroit</option>
+               <option value="347">Minneapolis</option>
+               <option value="349">Manteno</option>
+               <option value="352">Martinsburg</option>
+               <option value="355">Avenel</option>
+               <option value="360">Swift Refrigerated - Conley</option>
+               <option value="361">Swift Refrigerated - Rochelle</option>
+               <option value="362">Swift Refrigerated - Jacksonville</option>
+               <option value="400">Nuevo Laredo</option>
+            </select>
+         </div>
+
+         <div>
+            SelectGL
+            </br>
+            <select class="form-control" name="glCode" ng-model="glCodeSelect" id="glCodeSelect">
+               <option value="Select GL Name">Select GL Code</option>
+               <option value="001-000-00-00">Balance Sheet</option>
+               <option value="020-592-00-00">160 Contract Academy</option>
+               <option value="020-914-00-00">Accounts Payable</option>
+               <option value="020-911-00-00">Accounts Receivable</option>
+               <option value="020-728-00-00">After Market Puchasing & Warranty</option>
+               <option value="020-131-00-00">Alliance Contract Academy</option>
+               <option value="020-915-00-00">Asset Management</option>
+               <option value="020-958-00-00">Benefits</option>
+               <option value="020-910-00-00">Billing</option>
+               <option value="020-977-00-00">Blue Thunder</option>
+               <option value="020-920-00-00">Business Analysis</option>
+               <option value="020-759-00-00">Business Intelligence</option>
+               <option value="020-909-00-00">Business Transformation</option>
+               <option value="020-948-00-00">C1 Contract Academy</option>
+               <option value="020-993-00-00">Canada Corporate</option>
+               <option value="020-905-00-00">Cargo</option>
+               <option value="020-985-00-00">Central - California Academy</option>
+               <option value="020-974-00-00">Central - Customer Service</option>
+               <option value="020-986-00-00">Central - Dedicated Corp</option>
+               <option value="020-982-00-00">Central - Hiring</option>
+               <option value="020-983-00-00">Central - Overhead</option>
+               <option value="020-984-00-00">Central - Utah Academy</option>
+               <option value="020-799-00-00">Central Refrigerated Hold</option>
+               <option value="020-987-00-00">Central Refrigerated OTR</option>
+               <option value="020-954-00-00">Columbus Academy</option>
+               <option value="020-997-00-00">Company Store</option>
+               <option value="020-959-00-00">Compensation</option>
+               <option value="020-999-00-00">Corp G & A</option>
+               <option value="020-999-00-00">Corp G & A </option>
+               <option value="020-969-00-00">Corporate Academy</option>
+               <option value="020-730-00-00">Corporate Brokerage</option>
+               <option value="020-971-00-00">Corporate Driver Services</option>
+               <option value="020-644-00-00">Corporate Eliminations</option>
+               <option value="020-981-00-00">Corporate Grocery</option>
+               <option value="020-995-00-00">Corporate Intermodal</option>
+               <option value="020-994-00-00">Corporate Logistics</option>
+               <option value="020-750-00-00">Corporate Managed Trans</option>
+               <option value="020-956-00-00">Corporate Purchasing</option>
+               <option value="020-741-00-00">Corporate Warehousing</option>
+               <option value="020-945-00-00">Corsicana Academy</option>
+               <option value="020-940-00-00">Customer Service</option>
+               <option value="020-978-00-00">Dedicated</option>
+               <option value="020-991-00-00">DLT</option>
+               <option value="020-998-00-00">Driver Retention & Placement</option>
+               <option value="020-950-00-00">DS Contract Academy</option>
+               <option value="020-963-00-00">Employee Relations</option>
+               <option value="020-992-00-00">Equipment Management</option>
+               <option value="020-941-00-00">Equipment Outside Schools</option>
+               <option value="020-758-00-00">Equipment Sales (Truck & Trailer)</option>
+               <option value="020-933-00-00">ERP Project</option>
+               <option value="020-900-00-00">Executive</option>
+               <option value="020-938-00-00">Extended Coverage Team</option>
+               <option value="020-904-00-00">Facilities</option>
+               <option value="020-901-01-00">Finance</option>
+               <option value="020-927-00-00">Financial Planning & Analysis</option>
+               <option value="020-976-00-00">Flatbed</option>
+               <option value="020-942-00-00">Freight Services</option>
+               <option value="020-917-00-00">General Accounting</option>
+               <option value="020-957-00-00">Government Affairs</option>
+               <option value="020-943-00-00">Hiring - Corporate</option>
+               <option value="020-960-00-00">HR Compliance</option>
+               <option value="020-999-00-00">HR GENERALIST</option>
+               <option value="020-962-00-00">HR Management</option>
+               <option value="020-930-13-00">IEL Default - O/O Trucks</option>
+               <option value="020-916-00-00">Imaging</option>
+               <option value="020-925-00-00">Information Technology</option>
+               <option value="020-953-00-00">Inner Grove Heights Academy</option>
+               <option value="020-919-00-00">Internal Audit</option>
+               <option value="020-907-13-00">Interstate Equipment Leasing</option>
+               <option value="020-928-00-00">Investor Relations</option>
+               <option value="020-903-00-00">Jake Break</option>
+               <option value="020-729-00-00">Kansas City Academy</option>
+               <option value="020-931-00-00">Knight-Swift Intercompany</option>
+               <option value="020-935-00-00">Legal</option>
+               <option value="020-970-00-00">Lewiston Swift Academy</option>
+               <option value="020-926-00-00">Marketing - Truckside Media</option>
+               <option value="020-972-00-00">Medical</option>
+               <option value="020-946-00-00">Millington Academy</option>
+               <option value="020-952-00-00">Neenah Academy</option>
+               <option value="020-988-00-00">On-Road</option>
+               <option value="020-980-00-00">Operations</option>
+               <option value="020-990-00-00">Other Corporate</option>
+               <option value="020-975-00-00">Owner Operator</option>
+               <option value="020-913-00-00">Payroll</option>
+               <option value="020-944-00-00">Phoenix Academy</option>
+               <option value="020-939-00-00">Planning</option>
+               <option value="020-966-00-00">Pricing</option>
+               <option value="020-955-00-00">Purchasing & Fuel</option>
+               <option value="020-929-00-00">Revenue Support</option>
+               <option value="020-968-00-00">Richmond Swift Academy</option>
+               <option value="020-906-00-00">Risk Management</option>
+               <option value="020-934-00-00">Road Ready</option>
+               <option value="020-937-00-00">Safety</option>
+               <option value="020-965-00-00">Sales</option>
+               <option value="020-921-00-00">SEC</option>
+               <option value="020-936-00-00">Security</option>
+               <option value="020-989-00-00">Shop - Corporate</option>
+               <option value="020-922-00-00">Student Loans Administration</option>
+               <option value="020-582-00-01">Swift Express</option>
+               <option value="020-923-00-00">Talent Development</option>
+               <option value="020-964-00-00">Talent Management</option>
+               <option value="020-918-00-00">Tax</option>
+               <option value="020-902-00-00">Telecommunications</option>
+               <option value="020-648-00-00">Tennessee/Tampa Truck Driving Schools</option>
+               <option value="020-979-00-00">Tractor Repositioning</option>
+               <option value="020-973-00-00">Trade Trucks</option>
+               <option value="020-932-00-00">Trailer Management</option>
+               <option value="020-951-00-00">TransTech Contract Academy</option>
+               <option value="020-908-00-00">Treasury</option>
+               <option value="020-924-01-00">Unmanned Trucks</option>
+               <option value="020-947-00-00">USTDS</option>
+               <option value="020-967-00-00">USTDS Contract Academy</option>
+               <option value="020-802-10-00">Volvo - Dublin</option>
+               <option value="020-949-00-00">Waco Academy</option>
+               <option value="101-377-01-01">Amazon Dedicated Regional - Phoenix</option>
+               <option value="101-000-01-01">Amazon Phoenix</option>
+               <option value="101-478-16-01">Cabela's Dedicated</option>
+               <option value="101-000-01-01">CMC - CO</option>
+               <option value="101-526-18-01">CMC Albuquerque</option>
+               <option value="101-531-18-01">CMC Phoenix</option>
+               <option value="101-614-06-01">Container Linehaul</option>
+               <option value="101-504-01-01">Costco - Tolleson</option>
+               <option value="101-776-16-01">Dedicated Teams</option>
+               <option value="101-557-01-02">Digby Southwest Solo Fleet</option>
+               <option value="101-558-20-02">Digby Southwest Team Fleet</option>
+               <option value="101-583-16-01">Expeditors Los Angeles</option>
+               <option value="336-525-18-01">Freightliner High Point</option>
+               <option value="101-000-01-01">Guardian Industries</option>
+               <option value="101-276-16-01">Home Depot - Tolleson</option>
+               <option value="101-064-09-00">Lewis-Buckeye Shop</option>
+               <option value="101-559-18-01">Lowe's - Beaumont CA</option>
+               <option value="101-000-01-01">Lowe's Flatbed - Stockton</option>
+               <option value="101-256-18-01">Phoenix - Weyerhauser</option>
+               <option value="101-042-09-00">Phoenix Body Shop </option>
+               <option value="101-000-03-01">Phoenix Flatbed</option>
+               <option value="101-002-09-00">Phoenix Flatbed Shop</option>
+               <option value="101-452-20-01">Phoenix Hazmat Teams</option>
+               <option value="101-000-01-01">Phoenix Local</option>
+               <option value="101-000-01-02">Phoenix Owner Operator</option>
+               <option value="101-041-09-00">Phoenix Shop </option>
+               <option value="101-423-20-01">Phoenix Teams</option>
+               <option value="101-000-01-01">Phoenix Van</option>
+               <option value="101-522-16-01">Phoenix- Central Transport Dedicated</option>
+               <option value="101-042-09-00">Phoenix Body Shop </option>
+               <option value="101-000-03-01">Phoenix Flatbed</option>
+               <option value="101-002-09-00">Phoenix Flatbed Shop</option>
+               <option value="101-452-20-01">Phoenix Hazmat Teams</option>
+               <option value="101-000-01-01">Phoenix Local</option>
+               <option value="101-000-01-02">Phoenix Owner Operator</option>
+               <option value="101-041-09-00">Phoenix Shop </option>
+               <option value="101-423-20-01">Phoenix Teams</option>
+               <option value="103-043-09-00">Corrine Shop </option>
+               <option value="103-692-07-01">Costco 4 Axle - Salt Lake City</option>
+               <option value="103-482-01-01">Costco Local - Salt Lake City</option>
+               <option value="103-521-16-01">Family Dollar - Saint George</option>
+               <option value="103-755-19-01">Hub and Spoke SLC</option>
+               <option value="103-484-18-01">Salt Lake City - Home Depot Flatbed</option>
+               <option value="103-002-09-00">Salt Lake City Flatbed Shop</option>
+               <option value="103-455-20-01">Salt Lake City Hazmat Teams</option>
+               <option value="103-481-01-01">Salt Lake City Local</option>
+               <option value="103-000-01-02">Salt Lake City Owner Operator</option>
+               <option value="103-041-09-00">Salt Lake City Shop </option>
+               <option value="103-426-20-01">Salt Lake City Teams</option>
+               <option value="103-000-01-01">Salt Lake City Van</option>
+               <option value="103-625-21-01">Walmart Refrigerated - Corrine</option>
+               <option value="103-208-01-01">West Region Small Fleets - II</option>
+               <option value="104-693-07-01">Costco 4 Axle - Troutdale</option>
+               <option value="104-640-16-01">Rite Aid - Wilsonville</option>
+               <option value="104-865-16-01">Target - Albany</option>
+               <option value="104-200-01-01">Troutdale - Local, Rail & Canada</option>
+               <option value="104-458-20-01">Troutdale Hazmat Teams</option>
+               <option value="104-000-01-02">Troutdale Owner Operator</option>
+               <option value="104-041-09-00">Troutdale Shop </option>
+               <option value="104-429-20-01">Troutdale Teams</option>
+               <option value="104-000-01-01">Troutdale Van</option>
+               <option value="105-244-25-01">Atlanta Intermodal Dray</option>
+               <option value="105-493-25-01">Avenel Intermodal Dray</option>
+               <option value="105-395-05-03">Canadian Intermodal</option>
+               <option value="105-797-05-03">Central - TOFC Intermodal</option>
+               <option value="105-490-25-01">Charlotte NC Intermodal</option>
+               <option value="105-246-25-01">Chicago Intermodal Dray - Day</option>
+               <option value="105-254-25-01">Chicago Intermodal Dray - Sleeper</option>
+               <option value="105-245-25-01">Dallas Intermodal Dray</option>
+               <option value="105-564-25-01">Decatur Intermodal</option>
+               <option value="105-492-25-01">Edwardsville Intermodal Dray</option>
+               <option value="105-247-25-01">Fontana Intermodal Dray</option>
+               <option value="105-491-25-01">Harrisburg Intermodal Dray</option>
+               <option value="105-555-25-01">Houston Intermodal</option>
+               <option value="105-005-05-03">Intermodal - Phoenix Office</option>
+               <option value="105-225-25-01">Intermodal North Central</option>
+               <option value="105-226-25-01">Intermodal Northeast</option>
+               <option value="105-227-25-01">Intermodal South Central</option>
+               <option value="105-228-25-01">Intermodal Southeast</option>
+               <option value="105-778-05-01">Intermodal TOFC Dray</option>
+               <option value="105-229-25-01">Intermodal West</option>
+               <option value="105-566-25-01">Inver Grove - Intermodal</option>
+               <option value="105-563-25-01">Jacksonville - Intermodal</option>
+               <option value="105-248-25-01">Lathrop Intermodal Dray</option>
+               <option value="105-567-25-01">Memphis - Intermodal</option>
+               <option value="105-565-25-01">Orlando - Intermodal </option>
+               <option value="105-249-25-01">Portland Intermodal Dray</option>
+               <option value="105-003-05-03">Rail - Refrigerated</option>
+               <option value="105-250-25-01">Smaller Market Dray Fleets</option>
+               <option value="105-568-25-01">St Louis Intermodal</option>
+               <option value="105-494-25-01">Sumner Intermodal Dray</option>
+               <option value="105-495-25-01">Syracuse Intermodal Dray</option>
+               <option value="106-379-01-01">Amazon Dedicated Regional - Reno</option>
+               <option value="106-512-16-01">JC Penny - Reno NV</option>
+               <option value="106-000-01-01">Michelin - Reno</option>
+               <option value="106-453-20-01">Reno Hazmat Teams</option>
+               <option value="106-000-01-02">Reno Owner Operator</option>
+               <option value="106-041-09-00">Reno Shop </option>
+               <option value="106-424-20-01">Reno Teams</option>
+               <option value="106-000-01-01">Reno Van</option>
+               <option value="106-080-09-00">Walmart - McCarran Shop</option>
+               <option value="106-468-21-01">Walmart Grocery - McCarran NV</option>
+               <option value="107-399-01-01">Amazon Dedicated Regional -Lathrop</option>
+               <option value="107-723-01-01">Amazon Oakland, CA</option>
+               <option value="107-470-16-01">Coca Cola - Northern California</option>
+               <option value="107-696-16-01">Dollar Tree</option>
+               <option value="107-743-19-01">Hub and Spoke - Lathrop</option>
+               <option value="107-444-20-01">Lathrop Hazmat Teams</option>
+               <option value="107-203-01-01">Lathrop Local</option>
+               <option value="107-000-01-02">Lathrop Owner Operator</option>
+               <option value="107-041-09-00">Lathrop Shop </option>
+               <option value="107-415-20-01">Lathrop Teams</option>
+               <option value="107-000-01-01">Lathrop Van</option>
+               <option value="107-641-16-01">Rite Aid - Woodland</option>
+               <option value="107-661-16-01">Target - Woodland</option>
+               <option value="107-687-16-01">Walmart - Willows</option>
+               <option value="108-663-16-01">Dollar Tree - Marietta (OK)</option>
+               <option value="108-581-16-01">Exide- Oklahoma City</option>
+               <option value="108-108-01-01">Hobby Lobby</option>
+               <option value="108-298-16-01">Hobby Lobby Dedicated</option>
+               <option value="108-201-16-01">Hobby Lobby Solos</option>
+               <option value="108-560-19-01">OKC Hub and Spoke</option>
+               <option value="108-000-01-02">OKC Owner Operator</option>
+               <option value="108-451-20-01">Oklahoma City Hazmat Teams</option>
+               <option value="108-041-09-00">Oklahoma City Shop </option>
+               <option value="108-422-20-01">Oklahoma City Teams</option>
+               <option value="108-000-01-01">Oklahoma City Van</option>
+               <option value="109-000-01-01">Amazon Dedicated Regional - Fontana</option>
+               <option value="109-000-01-01">Amazon Dedicated West</option>
+               <option value="109-520-16-01">Campbell's Rancho Cucamonga</option>
+               <option value="109-480-16-01">Church & Dwight - Victorville</option>
+               <option value="109-471-16-01">Coca Cola - Southern California</option>
+               <option value="109-220-16-01">Costco - Mira Loma</option>
+               <option value="109-579-16-01">CSM Bakery</option>
+               <option value="109-763-16-01">Dollar Tree - San Bernadino (CA)</option>
+               <option value="109-387-01-01">Exide - Fontana</option>
+               <option value="109-000-01-01">Fontana - Hensley</option>
+               <option value="109-437-20-01">Fontana Hazmat Teams</option>
+               <option value="109-014-01-01">Fontana Local</option>
+               <option value="109-000-01-02">Fontana Owner Operator</option>
+               <option value="109-041-09-00">Fontana Shop </option>
+               <option value="109-408-20-01">Fontana Teams</option>
+               <option value="109-000-01-01">Fontana Van</option>
+               <option value="109-000-01-01">Hub and Spoke 10A 10B</option>
+               <option value="109-069-09-00">Jurupa Valley Shop</option>
+               <option value="109-704-16-01">Lowe's - Perris</option>
+               <option value="109-721-16-01">Michael's Lancaster, CA</option>
+               <option value="109-000-01-01">Nestle H20 Fleet</option>
+               <option value="109-527-16-01">Proctor & Gamble Oxnard CA</option>
+               <option value="109-643-16-01">Rite Aid - Lancaster</option>
+               <option value="109-771-16-01">Ross Perris</option>
+               <option value="109-849-16-01">Solo Cup - Rialto</option>
+               <option value="109-604-16-01">Southwest Region Small Fleets</option>
+               <option value="109-511-16-01">Target - Fontana</option>
+               <option value="109-550-17-01">Target - Rialto</option>
+               <option value="109-866-16-01">Target - Shafter</option>
+               <option value="109-649-16-01">Tyco</option>
+               <option value="109-288-16-01">Walmart P&D Dedicated</option>
+               <option value="109-294-16-01">Walmart P&D Irwindale</option>
+               <option value="111-277-01-01">Canadian Fleet </option>
+               <option value="111-691-07-01">Costco 4 Axle - Lewiston</option>
+               <option value="111-066-09-00">Grandview Shop</option>
+               <option value="111-445-20-01">Lewiston Hazmat Teams</option>
+               <option value="111-204-01-01">Lewiston Local</option>
+               <option value="111-000-01-02">Lewiston Owner Operator</option>
+               <option value="111-041-09-00">Lewiston Shop </option>
+               <option value="111-416-20-01">Lewiston Teams</option>
+               <option value="111-000-01-01">Lewiston Van </option>
+               <option value="111-610-01-01">Potlatch - Lewiston</option>
+               <option value="111-570-01-01">Swift Canada - Calgary</option>
+               <option value="111-672-21-01">Walmart Refrigerated - Grandview</option>
+               <option value="112-000-01-01">Costco - Denver</option>
+               <option value="112-483-18-01">Denver - Home Depot Flatbed</option>
+               <option value="112-514-19-01">Denver Express</option>
+               <option value="112-433-20-01">Denver Hazmat Teams</option>
+               <option value="112-000-01-01">Denver Local</option>
+               <option value="112-000-01-02">Denver Owner Operator</option>
+               <option value="112-474-01-01">Denver Regional</option>
+               <option value="112-041-09-00">Denver Shop </option>
+               <option value="112-404-20-01">Denver Teams</option>
+               <option value="112-000-01-01">Denver Van</option>
+               <option value="112-600-01-01">International Paper - Denver</option>
+               <option value="112-605-16-01">Lowe's - Cheyenne</option>
+               <option value="112-289-01-01">MillerCoors Denver</option>
+               <option value="112-666-16-01">Sears Logistics - Brighton</option>
+               <option value="112-719-51-01">SRO WVCUT OTR Fleet</option>
+               <option value="112-620-16-01">Target - Pueblo</option>
+               <option value="112-266-18-01">Weyerhauser - Denver</option>
+               <option value="113-690-07-01">Costco - Sumner</option>
+               <option value="113-319-16-01">Ferguson WA</option>
+               <option value="113-456-20-01">Seattle Hazmat Teams</option>
+               <option value="113-041-09-00">Seattle Shop </option>
+               <option value="113-427-20-01">Seattle Teams</option>
+               <option value="113-000-01-01">Seattle Van</option>
+               <option value="113-569-01-01">Swift Canada - Vancouver</option>
+               <option value="115-013-14-03">Brokerage - Asset Support</option>
+               <option value="115-013-14-03">Canadian Logistics</option>
+               <option value="115-796-53-03">Central - Chicago Brokerage</option>
+               <option value="115-795-53-03">Central - West Valley City Brokerage</option>
+               <option value="115-013-14-03">Harrisburg Brokerage</option>
+               <option value="115-013-14-03">Laredo Brokerage</option>
+               <option value="115-013-14-03">Logistic Flatbed</option>
+               <option value="115-013-14-03">Logistic Refrigerated</option>
+               <option value="115-013-14-03">Logistic Vans</option>
+               <option value="115-013-14-03">Minneapolis Brokerage</option>
+               <option value="115-013-14-03">MOM NC Brokerage</option>
+               <option value="115-742-32-03">MOM NC DC Warehousing</option>
+               <option value="115-013-14-03">Northwest Arkansas Brokerage</option>
+               <option value="115-013-14-03">Other EDI Brokerage</option>
+               <option value="115-013-14-03">Phoenix Brokerage</option>
+               <option value="115-013-14-03">Ponderay</option>
+               <option value="115-013-14-03">Resolute</option>
+               <option value="115-013-14-03">Salt Lake Brokerage</option>
+               <option value="115-013-14-03">Warehouse Brokerage</option>
+               <option value="115-013-14-03">Warren Distribution</option>
+               <option value="115-013-14-03">Western Mass Brokerage</option>
+               <option value="115-724-32-03">York PA Warehousing</option>
+               <option value="116-584-16-01">Chep Kansas City</option>
+               <option value="116-537-16-01">Coca Cola - Lenexa</option>
+               <option value="116-551-16-01">Coca Cola - Wright City</option>
+               <option value="116-710-01-01">Costco - Edwardsville</option>
+               <option value="116-205-16-01">Dollar Tree - Warrensburg</option>
+               <option value="116-435-20-01">Edwardsville Hazmat Teams</option>
+               <option value="116-000-01-02">Edwardsville Owner Operator</option>
+               <option value="116-041-09-00">Edwardsville Shop </option>
+               <option value="116-308-19-01">Edwardsville Shuttle</option>
+               <option value="116-406-20-01">Edwardsville Teams</option>
+               <option value="116-000-01-01">Edwardsville Van</option>
+               <option value="116-637-16-01">Exide - Edwardsville</option>
+               <option value="116-882-01-01">GLR-Edwardsville</option>
+               <option value="116-056-09-00">Harrisonville Shop</option>
+               <option value="116-506-16-01">Kohl's - Blue Springs</option>
+               <option value="116-232-16-01">Local Bottle Fleet - Church & Dwight</option>
+               <option value="116-063-09-00">Moberly Shop</option>
+               <option value="116-688-21-01">Walmart Refrigerated - Harrisonville</option>
+               <option value="116-618-21-01">Walmart Refrigerated - Moberly</option>
+               <option value="117-271-01-01">Carrier Corp</option>
+               <option value="117-398-16-01">Cedar Hill - JC Penney</option>
+               <option value="117-580-16-01">Conn's Dallas</option>
+               <option value="117-224-16-01">Del Monte - Fort Worth</option>
+               <option value="125-265-16-01">Dollar Tree - Marietta (TX)</option>
+               <option value="117-000-01-01">Home Depot - Corsicana</option>
+               <option value="117-000-01-01">Home Depot - Dallas</option>
+               <option value="117-000-01-01">Home Depot Flatbed - Grand Prairie</option>
+               <option value="117-635-16-01">Kohl's - Corsicana</option>
+               <option value="117-442-20-01">Lancaster Hazmat Teams</option>
+               <option value="117-000-01-01">Lancaster Local Fleet</option>
+               <option value="117-000-01-02">Lancaster Owner Operator</option>
+               <option value="117-041-09-00">Lancaster Shop</option>
+               <option value="117-538-19-01">Lancaster Shuttle</option>
+               <option value="117-413-20-01">Lancaster Teams</option>
+               <option value="117-000-01-01">Lancaster Van</option>
+               <option value="117-573-01-01">Sears Appliance</option>
+               <option value="117-824-16-01">Sears TDC Appliance</option>
+               <option value="117-371-16-01">Sears- Dallas</option>
+               <option value="117-320-16-01">Sears- Garland</option>
+               <option value="117-602-51-01">Swift Refrigerated - Lancaster</option>
+               <option value="117-627-17-01">Target - Denton</option>
+               <option value="117-000-01-01">Texas Hub & Spoke</option>
+               <option value="117-347-01-01">Texas Regional Dedicated Fleet - Lancaster</option>
+               <option value="117-473-16-01">Transplace Texas Regional Fleet</option>
+               <option value="117-068-09-00">Walmart - Temple Shop</option>
+               <option value="117-535-21-01">Walmart Refrigerated - Cleburne</option>
+               <option value="117-536-21-01">Walmart Refrigerated - Temple</option>
+               <option value="117-547-01-01">Walmart Texas Pop-Up</option>
+               <option value="118-231-01-01">B1 Fleet Laredo</option>
+               <option value="118-532-18-01">Chrysler Auto</option>
+               <option value="118-488-16-01">Freightliner Dedicated</option>
+               <option value="118-000-03-01">Laredo Flatbed</option>
+               <option value="118-443-20-01">Laredo Hazmat Teams</option>
+               <option value="118-014-01-01">Laredo Local Fleet</option>
+               <option value="118-000-01-02">Laredo Owner Operator</option>
+               <option value="118-041-09-00">Laredo Shop </option>
+               <option value="118-414-20-01">Laredo Teams</option>
+               <option value="118-000-01-01">Laredo Van</option>
+               <option value="119-000-11-03">Mexico Operations</option>
+               <option value="120-041-09-00">Willows Shop</option>
+               <option value="121-664-16-01">Cardinal Health El Paso</option>
+               <option value="121-574-19-01">El Paso Express</option>
+               <option value="121-436-20-01">El Paso Hazmat Teams</option>
+               <option value="121-263-01-01">El Paso Local</option>
+               <option value="121-000-01-02">El Paso Owner Operator</option>
+               <option value="121-041-09-00">El Paso Shop </option>
+               <option value="121-407-20-01">El Paso Teams</option>
+               <option value="121-000-01-01">El Paso Van</option>
+               <option value="121-546-17-01">Mount Franklin Foods</option>
+               <option value="122-042-09-00">Corsicana Body Shop</option>
+               <option value="123-000-01-02">Pueblo Owner Operator</option>
+               <option value="124-761-19-01">Albuquerque Express</option>
+               <option value="124-430-20-01">Albuquerque Hazmat Teams</option>
+               <option value="124-000-01-02">Albuquerque IEL Owner Operator</option>
+               <option value="124-000-01-02">Albuquerque Owner Operator</option>
+               <option value="124-041-09-00">Albuquerque Shop </option>
+               <option value="124-401-20-01">Albuquerque Teams</option>
+               <option value="124-000-01-01">Albuquerque Van</option>
+               <option value="124-507-16-01">Dollar Tree - Marietta</option>
+               <option value="124-045-09-00">Los Lunas Shop </option>
+               <option value="124-656-21-01">Walmart Refrigerated - Los Lunas</option>
+               <option value="125-152-16-01">Academy Sports</option>
+               <option value="125-087-09-00">Academy Sports & Outdoors</option>
+               <option value="125-599-16-01">Floor & Décor</option>
+               <option value="125-837-18-01">Home Depot Flatbed-Houston</option>
+               <option value="125-833-16-01">Home Depot-Baytown</option>
+               <option value="125-397-16-01">Houston - Home Depot RDC</option>
+               <option value="125-000-01-01">Houston Container Drayage</option>
+               <option value="125-000-01-01">Houston Express</option>
+               <option value="125-441-20-01">Houston Hazmat Teams</option>
+               <option value="125-000-01-01">Houston Local</option>
+               <option value="125-041-09-00">Houston Shop</option>
+               <option value="125-412-20-01">Houston Teams</option>
+               <option value="125-000-01-01">Houston Van</option>
+               <option value="125-000-01-01">Michelin-Houston</option>
+               <option value="125-820-01-01">Mobile-Houston</option>
+               <option value="125-348-01-01">Texas Regional Dedicated Fleet - Houston</option>
+               <option value="125-000-01-01">Walmart Refrigerated - New Caney</option>
+               <option value="125-251-18-01">Weyerhauser - Houston</option>
+               <option value="125-376-16-01">XPO Logistics - Houston</option>
+               <option value="130-593-52-01">American Foods Group</option>
+               <option value="130-301-52-01">Café Valley Marion</option>
+               <option value="130-792-52-01">Central - Café Valley Dedicated</option>
+               <option value="130-788-51-01">Central - Coors Dedicated</option>
+               <option value="130-787-52-01">Central - Dole Dedicated</option>
+               <option value="130-784-51-01">Central - Isola OTR</option>
+               <option value="130-786-52-01">Central - Kraft Dedicated</option>
+               <option value="130-794-52-01">Central - Mondelz Dedicated</option>
+               <option value="130-789-52-01">Central - Other Dedicated</option>
+               <option value="130-793-52-01">Central - United Natural Foods Dedicated</option>
+               <option value="130-780-51-01">Central - West Valley OTR</option>
+               <option value="130-373-52-01">Greencore</option>
+               <option value="130-598-52-01">Hershey Dedicated Edwardsville</option>
+               <option value="130-469-52-01">Hershey Dedicated Kennesaw</option>
+               <option value="130-749-52-01">Hershey Dedicated Ogden</option>
+               <option value="130-300-52-01">Kinexo</option>
+               <option value="130-777-52-01">Kraft - Private Fleet</option>
+               <option value="130-465-52-01">Perdue Dedicated</option>
+               <option value="130-513-52-01">Sanderson Farms - NC</option>
+               <option value="130-790-52-01">Smithfield</option>
+               <option value="130-594-52-01">Smithfield Regional</option>
+               <option value="130-747-51-01">SRO WVCUT Local Fleet</option>
+               <option value="130-756-51-01">SRS Ded Midwest Regional </option>
+               <option value="130-772-52-01">Swift Refrigerated - Kraft Dedicated DE32</option>
+               <option value="130-000-01-01">Swift Refrigerated - Kroger</option>
+               <option value="130-748-52-01">Swift Refrigerated - Lid1</option>
+               <option value="130-726-52-01">Swift Refrigerated - Lidl Graham</option>
+               <option value="131-000-01-01">Amazon Fresh Business</option>
+               <option value="131-781-51-01">Central - Fontana OTR</option>
+               <option value="131-000-01-01">Central - West Coast OTR</option>
+               <option value="131-745-51-01">SRC FNTCCA Local Fleet</option>
+               <option value="133-798-55-01">Central - Lamb Weston</option>
+               <option value="199-086-09-00">Otay Mesa Shop</option>
+               <option value="199-720-20-01">Otay Mesa Teams</option>
+               <option value="199-517-01-01">Otay Mesa Terminal</option>
+               <option value="330-489-16-01">CHEP - Albany Georgia</option>
+               <option value="330-284-16-01">CHEP - Harrisburg</option>
+               <option value="330-552-16-01">Chep - Maryland</option>
+               <option value="330-718-16-01">CHEP - Mechanicsburg</option>
+               <option value="335-261-01-01">Costco - Avenel</option>
+               <option value="335-000-01-01">Costco - Harrisburg</option>
+               <option value="330-524-16-01">Del Monte Bloomsburg</option>
+               <option value="330-826-16-01">DHL - JFK</option>
+               <option value="330-000-01-01">Harrisburg Van</option>
+               <option value="330-673-01-01">Harrisburg - Regional Van</option>
+               <option value="330-000-01-01">Harrisburg Flex Fleet</option>
+               <option value="330-440-20-01">Harrisburg Hazmat Teams</option>
+               <option value="330-000-01-02">Harrisburg Owner Operator</option>
+               <option value="330-041-09-00">Harrisburg Shop </option>
+               <option value="330-411-20-01">Harrisburg Teams</option>
+               <option value="330-292-16-01">Johnson & Johnson - Harrisburg</option>
+               <option value="330-000-01-01">Jonestown Express</option>
+               <option value="330-000-01-01">Kmart/Sears FHPA</option>
+               <option value="330-000-01-01">Local Slip Seat (NJ)</option>
+               <option value="330-510-01-01">Local Slip Seat (PA)</option>
+               <option value="330-475-16-01">MillerCoors Elkton</option>
+               <option value="330-324-01-02">Northeast Regional O/O</option>
+               <option value="330-285-16-01">Procter & Gamble - Harrisburg</option>
+               <option value="330-818-16-01">Quaker Oats</option>
+               <option value="330-000-01-01">Sears - Wilkes-Barre Linehaul</option>
+               <option value="330-472-16-01">Sears P&G Shuttle</option>
+               <option value="330-847-16-01">Sears Tire - Middletown</option>
+               <option value="330-382-16-01">Sears- Fairless Hills</option>
+               <option value="330-381-16-01">Sears- Wilkes-Barre Dedicated</option>
+               <option value="330-769-01-01">Sherwin Williams - Harrisburg PA</option>
+               <option value="330-821-16-01">Target - Chambersburg</option>
+               <option value="330-000-01-01">Target JIT One Way</option>
+               <option value="330-561-01-01">TJX Companies Harrisburg</option>
+               <option value="330-706-21-01">Walmart Refrigerated - Pottsville</option>
+               <option value="334-259-16-01">Costco - Monrovia</option>
+               <option value="334-607-16-01">Dollar Tree - Chesapeake</option>
+               <option value="334-869-16-01">Family Dollar Front Royal</option>
+               <option value="334-061-09-00">Martinsburg Shop </option>
+               <option value="334-454-20-01">Richmond Hazmat Teams</option>
+               <option value="334-464-19-01">Richmond Express</option>
+               <option value="334-000-01-02">Richmond Owner Operator</option>
+               <option value="334-070-09-00">Richmond Service Trucks</option>
+               <option value="334-041-09-00">Richmond Shop </option>
+               <option value="334-425-20-01">Richmond Teams</option>
+               <option value="334-000-01-01">Richmond Van</option>
+               <option value="335-367-01-01">Canadian Ops - Syracuse</option>
+               <option value="335-647-16-01">CHEP - Syracuse</option>
+               <option value="335-260-01-01">Costco - Monroe Township</option>
+               <option value="335-050-09-00">Dayville Shop </option>
+               <option value="335-516-16-01">Finch Paper</option>
+               <option value="335-236-16-01">Lowes - Plainfield</option>
+               <option value="335-632-16-01">Northeast Region Small Fleets</option>
+               <option value="335-572-01-01">Swift Canada - Montreal</option>
+               <option value="335-665-01-01">Syracuse - Regional Van</option>
+               <option value="335-774-19-00">Syracuse Express</option>
+               <option value="335-457-20-01">Syracuse Hazmat Teams</option>
+               <option value="335-000-01-02">Syracuse Owner Operator</option>
+               <option value="335-041-09-00">Syracuse Shop</option>
+               <option value="335-428-20-01">Syracuse Teams</option>
+               <option value="335-000-01-01">Syracuse Van</option>
+               <option value="335-842-16-01">Target - Amsterdam</option>
+               <option value="335-651-16-01">Target - Wilton</option>
+               <option value="335-078-09-00">Walmart - Johnstown Shop</option>
+               <option value="335-705-21-01">Walmart Refrigerated - Johnstown</option>
+               <option value="335-047-09-00">Wilton Shop</option>
+               <option value="336-270-16-01">Bush Brothers</option>
+               <option value="336-466-01-01">Bush Brothers Greer</option>
+               <option value="336-775-16-01">Campbells Soup Greer</option>
+               <option value="336-711-16-01">Conn's</option>
+               <option value="336-553-16-01">Dollar Tree - RDF</option>
+               <option value="336-646-16-01">Exide - Greer</option>
+               <option value="336-361-01-01">Greer - Southeast Regional </option>
+               <option value="336-042-09-00">Greer Body Shop </option>
+               <option value="336-461-19-01">Greer Express</option>
+               <option value="336-000-03-01">Greer Flatbed</option>
+               <option value="336-002-09-00">Greer Flatbed Shop</option>
+               <option value="336-439-20-01">Greer Hazmat Teams</option>
+               <option value="336-396-01-01">Greer Northeast Regional</option>
+               <option value="336-000-01-02">Greer Owner Operator</option>
+               <option value="336-041-09-00">Greer Shop </option>
+               <option value="336-410-20-01">Greer Teams</option>
+               <option value="336-000-01-01">Greer Van</option>
+               <option value="336-233-16-01">Procter & Gamble - Greer</option>
+               <option value="337-375-16-01">Church & Dwight Fostoria</option>
+               <option value="337-042-09-00">Columbus Body Shop</option>
+               <option value="337-575-19-01">Columbus Express</option>
+               <option value="337-432-20-01">Columbus Hazmat Teams</option>
+               <option value="337-000-01-02">Columbus Owner Operator</option>
+               <option value="337-041-09-00">Columbus Shop </option>
+               <option value="337-403-20-01">Columbus Teams</option>
+               <option value="337-059-09-00">Columbus Trailer Shop</option>
+               <option value="337-000-01-01">Columbus Van</option>
+               <option value="337-313-16-01">Ferguson Dedicated Vans</option>
+               <option value="337-875-01-01">GLR-Columbus</option>
+               <option value="337-622-16-01">Procter & Gamble - Lima</option>
+               <option value="337-846-01-01">Sears - Housewares</option>
+               <option value="337-770-01-01">Sears Chicago</option>
+               <option value="337-380-16-01">Sears- Columbus</option>
+               <option value="337-683-17-01">Target - West Jefferson</option>
+               <option value="338-274-16-01">Nestle Waters - Florida</option>
+               <option value="338-331-01-01">Ocala - Southeast Regional</option>
+               <option value="338-450-20-01">Ocala Hazmat Teams</option>
+               <option value="338-000-01-02">Ocala Owner Operator</option>
+               <option value="338-041-09-00">Ocala Shop </option>
+               <option value="338-353-01-01">Ocala Shorthaul</option>
+               <option value="338-421-20-01">Ocala Teams</option>
+               <option value="338-000-01-01">Ocala Van</option>
+               <option value="338-385-17-01">Target - Lake City</option>
+               <option value="338-496-21-01">Walmart - Arcadia</option>
+               <option value="338-073-09-00">Walmart - Arcadia Shop</option>
+               <option value="338-083-09-00">Walmart - Cocoa Beach Shop</option>
+               <option value="338-000-01-01">Walmart - MacClenny</option>
+               <option value="338-497-21-01">Walmart - Winter Haven</option>
+               <option value="338-074-09-00">Walmart - Winter Haven Shop</option>
+               <option value="338-132-21-01">Walmart Grocery - Cocoa Beach</option>
+               <option value="339-000-01-01">CHEP Dedicated Gary</option>
+               <option value="339-539-16-01">Coca Cola - Chicago</option>
+               <option value="339-839-01-01">Costco - Morris Yard Goat</option>
+               <option value="339-548-16-01">Dollar Tree - Joliet</option>
+               <option value="339-585-16-01">DSG Plainfield</option>
+               <option value="339-199-16-01">Ferguson Flatbed</option>
+               <option value="339-460-19-01">Gary Express</option>
+               <option value="339-000-03-01">Gary Flatbed</option>
+               <option value="339-002-09-00">Gary Flatbed Shop</option>
+               <option value="339-438-20-01">Gary Hazmat Teams</option>
+               <option value="339-000-01-02">Gary Owner Operator</option>
+               <option value="339-487-01-01">Gary Regional Fleet</option>
+               <option value="339-041-09-00">Gary Shop </option>
+               <option value="339-409-20-01">Gary Teams</option>
+               <option value="339-000-01-01">Gary Van</option>
+               <option value="339-871-01-01">GLR-Gary</option>
+               <option value="339-000-01-01">M&L Trucking</option>
+               <option value="339-670-16-01">Michelin - Wilmington</option>
+               <option value="339-529-18-01">North American Stainless</option>
+               <option value="339-591-16-01">Post Consumer Brands Wilmington, IL</option>
+               <option value="340-668-01-01">Atlanata - Local Van</option>
+               <option value="340-359-01-01">Atlanta - Southeast Regional</option>
+               <option value="340-577-19-01">Atlanta Express</option>
+               <option value="340-431-20-01">Atlanta Hazmat Teams</option>
+               <option value="340-000-01-02">Atlanta Owner Operator</option>
+               <option value="340-323-01-01">Atlanta Regional</option>
+               <option value="340-041-09-00">Atlanta Shop </option>
+               <option value="340-402-20-01">Atlanta Teams</option>
+               <option value="340-000-01-01">Atlanta Van</option>
+               <option value="340-701-16-01">BJ's Wholesale</option>
+               <option value="340-803-01-01">Costco - College Park</option>
+               <option value="340-519-01-01">Costco - College Park Refrigerated</option>
+               <option value="340-223-16-01">Del Monte - Atlanta</option>
+               <option value="340-595-16-01">Dick's Sporting Goods EP, GA</option>
+               <option value="340-160-16-01">Floor & Décor GA</option>
+               <option value="340-896-16-01">Georgia Pacific - Rincon</option>
+               <option value="340-808-16-01">Georgia Pacific-Pennington</option>
+               <option value="340-479-16-01">Kohl's - Macon</option>
+               <option value="340-576-16-01">Sears, Pendergrass, GA</option>
+               <option value="340-631-16-01">Southeast Region Small Fleets</option>
+               <option value="340-523-16-01">Target Tifton</option>
+               <option value="340-499-21-01">Walmart - Brundidge</option>
+               <option value="340-076-09-00">Walmart - Brundidge Shop</option>
+               <option value="340-500-21-01">Walmart - Opelika</option>
+               <option value="340-077-09-00">Walmart - Opelika Shop</option>
+               <option value="340-764-01-01">WalMart Dedicated Support Fleet-Atlanta</option>
+               <option value="340-000-01-01">Walmart Refrigerated - Monroe</option>
+               <option value="341-856-16-01">Dollar Tree - Olive Branch</option>
+               <option value="341-000-01-01">Family Dollar - West Memphis</option>
+               <option value="341-889-16-01">Georgia Pacific - Crossett</option>
+               <option value="341-885-16-01">Georgia Pacific - Monticello</option>
+               <option value="341-887-16-01">Georgia Pacific - W. Monroe</option>
+               <option value="341-209-16-01">Georgia Pacific Northeast</option>
+               <option value="341-586-16-01">Kellogg's Jackson TN</option>
+               <option value="341-588-01-01">Land O'Lakes</option>
+               <option value="341-042-09-00">Memphis Body Shop</option>
+               <option value="341-314-01-01">Memphis Daycab</option>
+               <option value="341-447-20-01">Memphis Hazmat Teams</option>
+               <option value="341-000-01-02">Memphis Owner Operator</option>
+               <option value="341-041-09-00">Memphis Shop </option>
+               <option value="341-310-19-01">Memphis Shuttle</option>
+               <option value="341-418-20-01">Memphis Teams</option>
+               <option value="341-000-01-01">Memphis Van</option>
+               <option value="341-893-16-01">Mueller</option>
+               <option value="341-302-16-01">Post Byhalia</option>
+               <option value="341-811-01-01">Sears-Memphis</option>
+               <option value="341-587-01-01">South Central Regional (SCR Div)</option>
+               <option value="341-023-09-00">St. Louis Shop</option>
+               <option value="341-000-01-01">Star Transport</option>
+               <option value="341-374-16-01">Transplace Dedicated Memphis</option>
+               <option value="341-000-01-01">Walmart Refrigerated - Robert</option>
+               <option value="344-702-16-01">Chep - Wisconsin</option>
+               <option value="344-540-16-01">Coca Cola - Milwaukee</option>
+               <option value="344-707-01-01">Costco - Menasha</option>
+               <option value="344-873-01-01">GLR-Menasha</option>
+               <option value="344-767-16-01">Kmart/Sears Dedicated</option>
+               <option value="344-448-20-01">Menasha Hazmat Teams</option>
+               <option value="344-000-01-02">Menasha Owner Operator</option>
+               <option value="344-041-09-00">Menasha Shop </option>
+               <option value="344-419-20-01">Menasha Teams</option>
+               <option value="344-000-01-01">Menasha Van</option>
+               <option value="344-623-16-01">Procter & Gamble - Green Bay</option>
+               <option value="344-853-01-01">Sears - Menasha</option>
+               <option value="344-315-16-01">Sears- Romeoville</option>
+               <option value="345-113-01-01">Amazon Dedicated Regional - Detroit</option>
+               <option value="345-877-01-01">Canada Fleet</option>
+               <option value="345-242-01-01">Chrysler</option>
+               <option value="345-709-01-01">Costco - Detroit</option>
+               <option value="345-722-16-01">Costco Van Buren Township</option>
+               <option value="345-825-01-01">DCX - Detroit</option>
+               <option value="345-042-09-00">Detroit Body Shop</option>
+               <option value="345-773-19-01">Detroit Express</option>
+               <option value="345-434-20-01">Detroit Hazmat Teams</option>
+               <option value="345-000-01-02">Detroit Owner Operator</option>
+               <option value="345-041-09-00">Detroit Shop</option>
+               <option value="345-405-20-01">Detroit Teams</option>
+               <option value="345-000-01-01">Detroit Van</option>
+               <option value="345-872-01-01">GLR-Detroit</option>
+               <option value="345-533-01-01">Harold Caldwell</option>
+               <option value="345-476-01-01">Sears - New Boston</option>
+               <option value="345-571-01-01">Swift Canada - Toronto</option>
+               <option value="347-467-01-01">Bush Brothers Minneapolis</option>
+               <option value="347-541-16-01">Coca Cola - Eagan</option>
+               <option value="347-768-16-01">Coca Cola Regional Dedicated</option>
+               <option value="347-708-01-01">Costco - Minneapolis</option>
+               <option value="347-874-01-01">GLR-Minneapolis</option>
+               <option value="347-449-20-01">Minneapolis Hazmat Teams</option>
+               <option value="347-000-01-02">Minneapolis Owner Operator</option>
+               <option value="347-041-09-00">Minneapolis Shop </option>
+               <option value="347-420-20-01">Minneapolis Teams</option>
+               <option value="347-000-01-01">Minneapolis Van</option>
+               <option value="347-240-16-01">Powermate</option>
+               <option value="347-000-01-01">Sears - Inver Grove Heights</option>
+               <option value="347-760-16-01">TORO-MINN</option>
+               <option value="349-065-09-00">Chicago Shop</option>
+               <option value="349-556-01-01">Costco - Morris </option>
+               <option value="349-766-01-01">Costco - Refrigerated - Spotting</option>
+               <option value="349-235-16-01">Del Monte - Illinois</option>
+               <option value="349-650-16-01">Georgia Pacific - Midwest Regional</option>
+               <option value="349-628-01-01">GLR-Manteno</option>
+               <option value="349-617-01-01">Illinois Regional - Manteno</option>
+               <option value="349-852-01-01">Local - Manteno</option>
+               <option value="349-578-19-01">Manteno Express</option>
+               <option value="349-446-20-01">Manteno Hazmat Teams</option>
+               <option value="349-041-09-00">Manteno Shop </option>
+               <option value="349-417-20-01">Manteno Teams</option>
+               <option value="349-000-01-01">Manteno Van</option>
+               <option value="199-459-20-01">Otay Mesa Hazmat Teams</option>
+               <option value="349-000-01-01">Pactive - Chicago Shuttle</option>
+               <option value="355-206-01-01">Avenel - Daycab Fleet</option>
+               <option value="355-015-09-00">Avenel Shop</option>
+               <option value="330-840-16-01">Church & Dwight</option>
+               <option value="360-782-51-01">Central - Conley OTR</option>
+               <option value="360-744-51-01">SRC CONLGA Local Fleet</option>
+               <option value="361-779-51-01">Central - Midwest Regional</option>
+               <option value="361-783-51-01">Central - Rochelle OTR</option>
+               <option value="361-041-09-00">Central - Rochelle Shop</option>
+               <option value="361-746-51-01">SRC ROCHIL Local Fleet</option>
+               <option value="362-084-09-00">Jacksonville Shop</option>
+               <option value="362-589-51-01">Swift Refrigerated - Jacksonville</option>
+               <option value="400-000-11-01">Trans-Mex</option>
+            </select>
+         </div>
+
+         <div>
+
+
+            Select Account
+            </br>
+            <div>
+               <select class="form-control" name="glAccount" ng-model="glAccountSelect">
+                  <option value="">Select Account</option>
+                  <option value="4562-00">Employee Expenses</option>
+                  <option value="4564-00">Hiring Expense</option>
+                  <option value="4564-04">Hiring-Advertising</option>
+                  <option value="4581-00">Corporate Branding</option>
+                  <option value="4582-00">Shop Tools Expense</option>
+                  <option value="4590-00">Other Op Supplies & Exp</option>
+                  <option value="4593-00">Company Store - Purchases</option>
+                  <option value="4594-00">Shop Supplies</option>
+                  <option value="4597-00">Promotional Expenses</option>
+                  <option value="4598-00">Promotional Deductions</option>
+                  <option value="4600-00">General Supplies & Expenses</option>
+                  <option value="4610-00">Office Supplies</option>
+                  <option value="4625-01">Annual Meeting</option>
+                  <option value="4627-00">Maintenance - Office Equip</option>
+                  <option value="4630-00">Advertising</option>
+                  <option value="4634-00">Service Awards</option>
+                  <option value="4665-00">Employee Rewards & Recognition</option>
+                  <option value="4670-00">Other Employees Expenses</option>
+                  <option value="4690-00">Other General Spl & Exp</option>
+                  <option value="4699-02">Swift Charities</option>
+                  <option value="5938-00">IEL Shared Services - Marketing & Referral</option>
+                  <option value="5992-00">Facilities Alloc</option>
+                  <option value="8121-00">Company Store - Cost of Sales</option>
+                  <option value="8122-00">Company Store - Sales</option>
+                  <option value="8123-00">Company Store Giveaways</option>
+               </select>
+            </div>
+         </div>
+
+         <!--GL GENERATED HERE -->
+         <div>
+            <input class="form-control" type="text" id="GLGenerated" style="font-weight:bold" title="Swift GL Code" value="{{glCompanySelect}}-{{glCodeSelect}}-{{glAccountSelect}}" />{{glCompanySelect}}-{{glCodeSelect}}-{{glAccountSelect}}
+         </div>
+
+         <input type="text" id="GLGenerated">
+           <button type="button" id="myBtn">Generate GL</button>
+           
+           <script>
+           $("#myBtn").click(function(){
+              var glStringGenerated = $("#GLGenerated").val();
+              console.log(glStringGenerated);
+            });
+          </script>
+
+         <script>
+            $("#glCodeSelect").prop("disabled", true);
+
+            $("#glDivisionSelect").change(function() {
+               var value = $(this).val();
+               $("#glCodeSelect").prop("disabled", false);
+               $("#glCodeSelect > option").hide();
+               $("#glCodeSelect > option[value*='" + value + "']").show();
+            })
+         </script>
+
+         <script>
+            $("#glDivision").change(function() {
+               if ("#glName" != 'Select GLName')
+                  $('#glName').empty().append($('<option></option>').val('Select glName').html('Select glName'));
+               else;
+               $.each(a.Divisions, function(key, value) {
+                  $("#glName").append($('<option></option>').val(value.glCode).html(value.glName));
+               });
+            });
+
+            $('#glName').change(function() {
+               $('#glCode').val($(this).val());
+            });
+         </script>
+</body>
+
+</html>
